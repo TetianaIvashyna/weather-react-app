@@ -12,17 +12,17 @@ export default function Hamburger(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Current Location</a>
+                            <a className="nav-link active" aria-current="page" href="/">Current Location</a>
                         </li>
                 <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     My Cities
                 </a>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Kharkiv</a></li>
-                    <li><a className="dropdown-item" href="#">Kyiv</a></li> 
-                    <li><a className="dropdown-item" href="#">Eindhoven</a></li>
-                    <li><a className="dropdown-item" href="#">Amsterdam</a></li>
+                    <li><a className="dropdown-item" href="/">Kharkiv</a></li>
+                    <li><a className="dropdown-item" href="/">Kyiv</a></li> 
+                    <li><a className="dropdown-item" href="/">Eindhoven</a></li>
+                    <li><a className="dropdown-item" href="/">Amsterdam</a></li>
                 </ul>
         </li>
       </ul>
