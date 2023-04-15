@@ -1,5 +1,11 @@
 import React from "react";
 
 export default function Temperature(props) {
-  return <h1>{props.value}&deg; C | F</h1>;
+
+  return (
+  <div className="Temperature text-center">
+    <h1>{props.value}&deg; </h1>
+    <p><a href="/">C</a> | <a href="/">F</a></p>
+    </div>
+    );
 }

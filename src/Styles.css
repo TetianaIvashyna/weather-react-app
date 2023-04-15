@@ -1,0 +1,33 @@
+ h1 {
+    font-size: 96px;
+}
+ .Temperature p {
+    font-size: 24px;
+ }
+
+.WeatherPicture h1 {
+    font-size: 128px;
+}
+
+.ImportantExtras p {
+    font-size: 24px;
+}
+
+.DayForecast {
+    font-size: 18px;
+}
+
+.CurrentWeather, .WeatherApp {
+    margin-bottom: 15px;
+}
+
+@media(min-width: 756px) {
+.DayForecast {
+    font-size: 24px;
+}
+
+.CurrentWeather, .WeatherApp {
+    margin-bottom: 50px;
+}
+
+}

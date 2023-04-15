@@ -3,7 +3,7 @@ import React from "react";
 export default function Visibility(props) {
   return (
     <div className="Visibility">
-      <h3>Visibility: {props.value} m</h3>
+      <p><strong>Visibility:</strong> {props.value/1000} km</p>
     </div>
   );
 }

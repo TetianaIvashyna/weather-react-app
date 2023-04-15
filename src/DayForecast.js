@@ -2,11 +2,11 @@ import React from "react";
 
 export default function DayForecast(props) {
   return (
-    <div className="DayForecast">
+    <div className="DayForecast text-center">
       <div className="WeekDayForecast">{props.weekday}</div>
-      <h1 className="IconForecast">{props.icon}</h1>
+      <h2 className="IconForecast">{props.icon}</h2>
       <div className="TemperatureForecast">
-        {props.hightemp}&deg; | {props.lowtemp}&deg;
+        <strong>{props.hightemp}&deg;</strong> {props.lowtemp}&deg;
       </div>
     </div>
   );

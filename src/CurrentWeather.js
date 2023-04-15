@@ -1,6 +1,4 @@
 import React from "react";
-
-import LocationTime from "./LocationTime";
 import Temperature from "./Temperature";
 import WeatherPicture from "./WeatherPicture";
 import WeatherExtras from "./WeatherExtras";
@@ -10,16 +8,13 @@ export default function CurrentWeather() {
     <div className="CurrentWeather">
       <div className="container">
         <div className="row">
-          <div className="col-sm-3">
-            <LocationTime />
-          </div>
-          <div className="col-sm-3">
+          <div className="col-sm-4">
             <Temperature value={18} />
           </div>
-          <div className="col-sm-3">
+          <div className="col-sm-4">
             <WeatherPicture icon="☀️" />
           </div>
-          <div className="col-sm-3">
+          <div className="col-sm-4">
             <WeatherExtras />
           </div>
         </div>

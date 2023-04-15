@@ -1,7 +1,7 @@
 import React from "react";
-import "./styles.css";
 import WeatherApp from "./WeatherApp";
 import Footer from "./Footer";
+import "./Styles.css"
 
 function App() {
   return (

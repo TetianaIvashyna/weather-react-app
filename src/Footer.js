@@ -2,10 +2,10 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="Footer">
+    <div className="Footer text-center mb-3">
       <a
-        href="https://github.com/TetianaIvashyna/SheCodesPlus-Weather-Project"
-        target="_blank"
+        href="https://github.com/TetianaIvashyna/weather-react-app"
+        target="_blank" rel="noreferrer"
       >
         Open source code
       </a>

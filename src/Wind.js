@@ -3,7 +3,7 @@ import React from "react";
 export default function Wind(props) {
   return (
     <div className="Wind">
-      <h3>Wind: {props.speed} m/s</h3>
+      <p><strong>Wind:</strong> {props.speed} m/s</p>
     </div>
   );
 }
