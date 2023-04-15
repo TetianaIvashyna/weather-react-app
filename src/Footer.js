@@ -9,7 +9,7 @@ export default function Footer() {
       >
         Open source code
       </a>
-      , by Tetiana Ivashyna
+      , by Tanja Ivashyna
     </div>
   );
 }
