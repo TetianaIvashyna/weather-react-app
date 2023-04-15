@@ -17,8 +17,12 @@
     font-size: 18px;
 }
 
-.CurrentWeather, .WeatherApp {
+.CurrentWeather {
     margin-bottom: 15px;
+}
+
+.WeatherApp {
+    margin-bottom: 25px;
 }
 
 @media(min-width: 756px) {
@@ -26,8 +30,12 @@
     font-size: 24px;
 }
 
-.CurrentWeather, .WeatherApp {
+.CurrentWeather {
     margin-bottom: 50px;
+}
+
+.WeatherApp {
+    margin-bottom: 80px;
 }
 
 }
