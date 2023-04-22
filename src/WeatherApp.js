@@ -10,7 +10,7 @@ export default function WeatherApp() {
       <div className="container">
         <Hamburger city="Eindhoven" />
         <LocationTime />
-        <CurrentWeather />
+        <CurrentWeather city="Eindhoven"/>
         <WeatherForecast />
     </div>
     </div>
