@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+import LocationTime from "./LocationTime";
 import Temperature from "./Temperature";
 import WeatherPicture from "./WeatherPicture";
 import Wind from "./Wind";
@@ -15,7 +17,7 @@ export default function CurrentWeather(props) {
                 city: response.data.city,
                 description: response.data.condition.description,
                 iconUrl: response.data.condition.icon_url,
-                datetime: "Sunday 23 april 16:09",
+                datetime: new Date(response.data.time * 1000),
                 feelslike: response.data.temperature.feels_like,
                 pressure: response.data.temperature.pressure,
                 temperature: response.data.temperature.current,
@@ -29,6 +31,7 @@ export default function CurrentWeather(props) {
     if (weather.ready) {
         return (
             <div className="CurrentWeather">
+                <LocationTime date={weather.datetime}/>
                 <div className="container">
                     <div className="row">
                     <div className="col-sm-4">
