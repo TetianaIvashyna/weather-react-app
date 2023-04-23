@@ -38,7 +38,7 @@ export default function CurrentWeather(props) {
                         <Temperature value={Math.round(weather.temperature)} />
                     </div>
                     <div className="col-sm-4">
-                        <WeatherPicture icon="☀️" />
+                        <WeatherPicture src={weather.iconUrl} alt={weather.description} />
                     </div>
                     <div className="col-sm-4">
                         <div className="WeatherExtras text-center">
