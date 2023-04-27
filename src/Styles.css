@@ -44,6 +44,10 @@ h1 {
 
 }
 
-.current-loc:hover, .mycity:hover {
+.current-loc:hover, .mycity:hover, .href-role:hover {
     cursor: pointer;
+}
+
+.big {
+    font-size: 24px;
 }
