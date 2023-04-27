@@ -3,6 +3,7 @@ import Weather from "./Weather";
 import axios from "axios";
 
 export default function Hamburger(props) {
+    const mycities =["Kharkiv", "Eindhoven", "Berlin"];
     let [inputtext, setInputtext] = useState("");
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
@@ -25,6 +26,10 @@ export default function Hamburger(props) {
 
     function handleInput(event) {
         setInputtext(event.target.value);
+    }
+
+    function handleDropdown(event) {
+        setWeather({city: event.target.id, ready: false});
     }
 
     function Search(event) {
@@ -51,10 +56,13 @@ export default function Hamburger(props) {
                                     My Cities
                                     </span>
                                     <ul className="dropdown-menu">
-                                        <li><span className="dropdown-item">Kharkiv</span></li>
-                                        <li><span className="dropdown-item">Kyiv</span></li> 
-                                        <li><span className="dropdown-item">Eindhoven</span></li>
-                                        <li><span className="dropdown-item">Amsterdam</span></li>
+                                        {mycities.map(function (item, index) {
+                                            return (
+                                            <li key={index}>
+                                                <span className="dropdown-item" id={item} onClick={handleDropdown}>{item}</span>
+                                            </li>
+                                            );
+                                        })}
                                     </ul>
                                 </li>
                                 <li>
@@ -111,7 +119,7 @@ export default function Hamburger(props) {
                         </div>
                     </div>
                 </nav>
-                Loading...
+                <p>Loading...</p>
             </div>
         );
     }
