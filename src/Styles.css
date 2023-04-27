@@ -44,9 +44,6 @@ h1 {
 
 }
 
-.poes {
-    color: blueviolet;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 700;
-    font-size: larger;
+.current-loc:hover, .mycity:hover {
+    cursor: pointer;
 }
