@@ -1,15 +1,15 @@
 import React from "react";
-import WeatherApp from "./WeatherApp";
+import Hamburger from "./Hamburger";
 import Footer from "./Footer";
 import "./Styles.css"
 
 function App() {
   return (
     <div className="App">
-      <WeatherApp />
+      <Hamburger defaultcity="Eindhoven" />
       <Footer />
     </div>
   );
 }
-
+// container d-flex justify-content-center p-3
 export default App;
