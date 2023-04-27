@@ -8,6 +8,7 @@ export default function Hamburger(props) {
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
     function handleResponse(response) {
+        console.log(response.data.temperature.current);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -24,11 +25,13 @@ export default function Hamburger(props) {
     }
 
     function handlePosition(position) {
+        setWeather({ready: false});
         let lon = position.coords.longitude;
         let lat = position.coords.latitude;
         const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
         let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);   
+        console.log(weather.temperature);
     }
 
     function passCurrentLocation() {
@@ -69,7 +72,7 @@ export default function Hamburger(props) {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <span className="nav-link active current-loc" aria-current="page" onClick={passCurrentLocation}>Current Location</span>
+                                    <span className="nav-link active href-role" aria-current="page" onClick={passCurrentLocation}>Current Location</span>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
@@ -79,7 +82,7 @@ export default function Hamburger(props) {
                                         {mycities.map(function (item, index) {
                                             return (
                                             <li key={index}>
-                                                <span className="dropdown-item mycity" id={item} onClick={handleDropdown}>{item}</span>
+                                                <span className="dropdown-item href-role" id={item} onClick={handleDropdown}>{item}</span>
                                             </li>
                                             );
                                         })}
