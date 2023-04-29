@@ -8,7 +8,6 @@ export default function Hamburger(props) {
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
     function handleResponse(response) {
-        console.log(response.data.temperature.current);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -31,7 +30,6 @@ export default function Hamburger(props) {
         const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
         let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);   
-        console.log(weather.temperature);
     }
 
     function passCurrentLocation() {
@@ -99,7 +97,7 @@ export default function Hamburger(props) {
                         </div>
                     </div>
                 </nav>
-                { (weather.ready) ? <Weather info={weather} /> : <p>Loading...</p> }
+                { (weather.ready) ? <Weather currentweather={weather} /> : <p>Loading...</p> }
             </div>
     );
 }

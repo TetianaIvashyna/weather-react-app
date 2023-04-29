@@ -10,23 +10,21 @@ import DayForecast from "./DayForecast";
 
 export default function Weather(props) { 
     function toCelsius() {
-        setTemperature(Math.round(props.info.temperature));
+        setTemperature(Math.round(props.currentweather.temperature));
         setIsCelsius(true);
     }
 
     function toFahrenheit() {
-        let fahrenheit = props.info.temperature * (9 / 5) + 32;
+        let fahrenheit = props.currentweather.temperature * (9 / 5) + 32;
         setTemperature(Math.round(fahrenheit));
         setIsCelsius(false);
     }
 
-    let [temperature, setTemperature] = useState(Math.round(props.info.temperature));
+    let [temperature, setTemperature] = useState(Math.round(props.currentweather.temperature));
     let [isCelsius, setIsCelsius] = useState(true);
-
-    console.log(temperature);
         return (
                 <div className="Weather">
-                    <LocationTime date={props.info.datetime}/>
+                    <LocationTime date={props.currentweather.datetime}/>
                     <div className="container">
                         <div className="row">
                         <div className="col-sm-4">
@@ -37,17 +35,17 @@ export default function Weather(props) {
                             </div>
                         </div>
                         <div className="col-sm-4">
-                            <WeatherPicture src={props.info.iconUrl} alt={props.info.description} />
+                            <WeatherPicture src={props.currentweather.iconUrl} alt={props.currentweather.description} />
                         </div>
                         <div className="col-sm-4">
                             <div className="WeatherExtras text-center">
                                 <div className="ImportantExtras">
-                                    <Wind speed={Math.round(props.info.windspeed)} />
+                                    <Wind speed={Math.round(props.currentweather.windspeed)} />
                                 </div>      
                                 <div className="extras mt-4 d-none d-sm-block">
-                                    <FeelsLike value={Math.round(props.info.feelslike)} />
-                                    <WeatherDescription value={props.info.description} />
-                                    <Humidity value={props.info.humidity} />
+                                    <FeelsLike value={Math.round(props.currentweather.feelslike)} />
+                                    <WeatherDescription value={props.currentweather.description} />
+                                    <Humidity value={props.currentweather.humidity} />
                                 </div>
                             </div>
                         </div>
