@@ -44,7 +44,7 @@ h1 {
 
 }
 
-.current-loc:hover, .mycity:hover, .href-role:hover {
+.href-role:hover {
     cursor: pointer;
 }
 
