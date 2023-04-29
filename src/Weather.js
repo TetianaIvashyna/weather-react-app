@@ -10,12 +10,12 @@ import DayForecast from "./DayForecast";
 
 export default function Weather(props) { 
     function toCelsius() {
-        setTemperature(Math.round(props.value));
+        setTemperature(Math.round(props.info.temperature));
         setIsCelsius(true);
     }
 
     function toFahrenheit() {
-        let fahrenheit = props.value * (9 / 5) + 32;
+        let fahrenheit = props.info.temperature * (9 / 5) + 32;
         setTemperature(Math.round(fahrenheit));
         setIsCelsius(false);
     }
