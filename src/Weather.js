@@ -6,6 +6,7 @@ import Wind from "./Wind";
 import FeelsLike from "./FeelsLike";
 import WeatherDescription from "./WeatherDescription";
 import Humidity from "./Humidity";
+import DayForecast from "./DayForecast";
 
 export default function Weather(props) { 
     function toCelsius() {
@@ -51,6 +52,24 @@ export default function Weather(props) {
                             </div>
                         </div>
                         </div>
+                    </div>
+                    <div className="WeatherForecast">
+                    <div className="container">
+                        <div className="row">
+                        <div className="col-3">
+                            <DayForecast weekday="Sun" icon="☀️" lowtemp={9} hightemp={18} />
+                        </div>
+                        <div className="col-3">
+                            <DayForecast weekday="Mon" icon="🌦" lowtemp={8} hightemp={15} />
+                        </div>
+                        <div className="col-3">
+                            <DayForecast weekday="Tue" icon="⛅️" lowtemp={7} hightemp={16} />
+                        </div>
+                        <div className="col-3">
+                            <DayForecast weekday="Wed" icon="🌦" lowtemp={10} hightemp={19} />
+                        </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             );
