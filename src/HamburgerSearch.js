@@ -5,7 +5,8 @@ import axios from "axios";
 export default function Hamburger(props) {
     const mycities =["Kharkiv", "Eindhoven", "Berlin"];
     let [inputtext, setInputtext] = useState("");
-    let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
+    let [weather, setWeather] = useState({ city: props.defaultcity, ready: false });
+    let [forecast, setForecast] = useState({ready:false});
 
     function handleResponse(response) {
        setWeather ({
@@ -23,13 +24,23 @@ export default function Hamburger(props) {
            });
     }
 
+    function handleForecastResponse(response) {
+        console.log(response.data);
+        setForecast(
+            {
+                data: response.data.daily,
+                ready: true
+            }
+        );
+    }
+
     function handlePosition(position) {
         setWeather({ready: false});
         let lon = position.coords.longitude;
         let lat = position.coords.latitude;
         const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);   
+        let apiUrlCurrent = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+        axios.get(apiUrlCurrent).then(handleResponse);   
     }
 
     function passCurrentLocation() {
@@ -56,8 +67,11 @@ export default function Hamburger(props) {
 
     if (!weather.ready) {
         const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
+        let apiUrlCurrent = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
+        let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${weather.city}&key=${apiKey}&units=metric`;
+        
+        axios.get(apiUrlCurrent).then(handleResponse);
+        axios.get(apiUrlForecast).then(handleForecastResponse);
     }
     return(
             <div className="Hamburger">
@@ -97,7 +111,7 @@ export default function Hamburger(props) {
                         </div>
                     </div>
                 </nav>
-                { (weather.ready) ? <Weather currentweather={weather} /> : <p>Loading...</p> }
+                { (weather.ready) ? <Weather currentweather={weather} forecast={forecast.data} /> : <p>Loading...</p> }
             </div>
     );
 }
