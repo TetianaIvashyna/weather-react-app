@@ -56,9 +56,10 @@ export default function Weather(props) {
                         <div className="container">
                             <div className="row">
                                 {props.forecast.map(function (item, index){
+                                    console.log(item);
                                     return(
                                         <div className="col" key={index}>
-                                            <DayForecast weekday={item.time} icon={item.condition.description} lowtemp={item.temperature.minimum} hightemp={item.temperature.maximum} />
+                                            <DayForecast data={item} />
                                         </div>
                                     );
                                 })}
@@ -68,3 +69,12 @@ export default function Weather(props) {
                 </div>
             );
 }
+
+// {props.forecast.map(function (item, index){
+//                                     console.log(item);
+//                                     return(
+//                                         <div className="col" key={index}>
+//                                             <DayForecast data={item} />
+//                                         </div>
+//                                     );
+//                                 })}

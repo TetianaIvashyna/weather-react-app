@@ -6,7 +6,7 @@ export default function Hamburger(props) {
     const mycities =["Kharkiv", "Eindhoven", "Berlin"];
     let [inputtext, setInputtext] = useState("");
     let [weather, setWeather] = useState({ city: props.defaultcity, ready: false });
-    let [forecast, setForecast] = useState({ready:false});
+    let [forecast, setForecast] = useState({data:[], ready:false});
 
     function handleResponse(response) {
        setWeather ({
@@ -25,10 +25,22 @@ export default function Hamburger(props) {
     }
 
     function handleForecastResponse(response) {
-        console.log(response.data);
+        let newforecast=[];
+        console.log(response.data.daily);
+        response.data.daily.map(function (item) {
+            newforecast.push(
+                {
+                    datetime: item.time,
+                    iconUrl: item.condition.icon_url,
+                    description: item.condition.description,
+                    maxtemp: item.temperature.maximum,
+                    mintemp: item.temperature.minimum
+                }
+            );
+        })
         setForecast(
             {
-                data: response.data.daily,
+                data: newforecast,
                 ready: true
             }
         );
@@ -53,6 +65,7 @@ export default function Hamburger(props) {
 
     function handleDropdown(event) {
         setWeather({city: event.target.id, ready: false});
+        setForecast({data:[], ready: false});
     }
 
     function Search(event) {
@@ -62,16 +75,19 @@ export default function Hamburger(props) {
             // setWeather({city: props.defaultcity, ready: false});
         } else {
             setWeather({city: inputtext, ready: false});
+            setForecast({data:[], ready: false});
         }
     }
 
     if (!weather.ready) {
         const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
         let apiUrlCurrent = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-        let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${weather.city}&key=${apiKey}&units=metric`;
-        
         axios.get(apiUrlCurrent).then(handleResponse);
-        axios.get(apiUrlForecast).then(handleForecastResponse);
+
+        if(!forecast.ready) {
+            let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${weather.city}&key=${apiKey}&units=metric`;
+            axios.get(apiUrlForecast).then(handleForecastResponse);         
+        } 
     }
     return(
             <div className="Hamburger">
