@@ -1,15 +1,11 @@
 import React from "react";
 
 export default function DayForecast(props) {
-  console.log(props.data);
+
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let day = days[props.day.getDay()];
   return (
-    <div className="DayForecast text-center">
-        <div className="WeekDayForecast">{props.data.datetime}</div>
-        <img src={props.data.iconUrl} alt={props.data.description} />
-        <div className="TemperatureForecast">
-        <strong>{Math.round(props.data.maxtemp)}&deg;</strong> {Math.round(props.data.mintemp)}&deg;
-       </div>
-    </div>
+    <div className="Forecast text-center">{day}</div>
   );
 }
  

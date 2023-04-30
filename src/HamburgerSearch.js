@@ -26,17 +26,17 @@ export default function Hamburger(props) {
 
     function handleForecastResponse(response) {
         let newforecast=[];
-        console.log(response.data.daily);
         response.data.daily.map(function (item) {
             newforecast.push(
                 {
-                    datetime: item.time,
+                    datetime: new Date(item.time * 1000),
                     iconUrl: item.condition.icon_url,
                     description: item.condition.description,
                     maxtemp: item.temperature.maximum,
                     mintemp: item.temperature.minimum
                 }
             );
+            return null;
         })
         setForecast(
             {

@@ -56,10 +56,15 @@ export default function Weather(props) {
                         <div className="container">
                             <div className="row">
                                 {props.forecast.map(function (item, index){
-                                    console.log(item);
                                     return(
                                         <div className="col" key={index}>
-                                            <DayForecast data={item} />
+                                            <div className="Forecast text-center">
+                                                <DayForecast day={item.datetime} />
+                                                <img src={item.iconUrl} alt={item.description} />
+                                                <div className="TemperatureForecast">
+                                                <strong>{Math.round(item.maxtemp)}&deg;</strong> {Math.round(item.mintemp)}&deg;
+                                            </div>
+                                            </div>
                                         </div>
                                     );
                                 })}
@@ -70,11 +75,3 @@ export default function Weather(props) {
             );
 }
 
-// {props.forecast.map(function (item, index){
-//                                     console.log(item);
-//                                     return(
-//                                         <div className="col" key={index}>
-//                                             <DayForecast data={item} />
-//                                         </div>
-//                                     );
-//                                 })}
