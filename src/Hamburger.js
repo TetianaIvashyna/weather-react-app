@@ -7,6 +7,7 @@ export default function Hamburger(props) {
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
     function handleResponse(response) {
+        console.log(response.data);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -44,6 +45,9 @@ export default function Hamburger(props) {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
                                 <li className="nav-item">
+                                      
+                                </li>
+                                <li className="nav-item">
                                     <a className="nav-link active" aria-current="page" href="/">Current Location</a>
                                 </li>
                                 <li className="nav-item dropdown">
@@ -57,8 +61,30 @@ export default function Hamburger(props) {
                                         <li><span className="dropdown-item">Amsterdam</span></li>
                                     </ul>
                                 </li>
+                                <li className="nav-item dropdown">
+                                    <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                    Temperature units
+                                    </span>
+                                    <ul className="dropdown-menu">
+                                        <li>
+                                            <div class="form-check ms-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Celsius
+                                                </label>
+                                            </div>
+                                            <div class="form-check  ms-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Fahrenheit
+                                                </label>
+                                            </div>
+                                        </li>
+                    
+                                    </ul>
+                                </li>
                                 <li>
-                                
+                                    
                                 </li>
                             </ul>
                             <form className="d-flex" role="search" onSubmit={Search}>
