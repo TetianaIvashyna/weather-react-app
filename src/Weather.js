@@ -9,13 +9,14 @@ import WeatherDescription from "./WeatherDescription";
 import Humidity from "./Humidity";
 
 export default function Weather(props) { 
+    
    return (
             <div className="Weather">
                 <LocationTime date={props.info.datetime}/>
                 <div className="container">
                     <div className="row">
                     <div className="col-sm-4">
-                        <Temperature value={Math.round(props.info.temperature)} />
+                        <Temperature value={props.info.temperature} isCelsius={props.isCelsius} />
                     </div>
                     <div className="col-sm-4">
                         <WeatherPicture src={props.info.iconUrl} alt={props.info.description} />
@@ -26,7 +27,7 @@ export default function Weather(props) {
                                 <Wind speed={Math.round(props.info.windspeed)} />
                             </div>      
                             <div className="extras mt-4 d-none d-sm-block">
-                                <FeelsLike value={Math.round(props.info.feelslike)} />
+                                <FeelsLike value={props.info.feelslike} isCelsius={props.isCelsius}/>
                                 <WeatherDescription value={props.info.description} />
                                 <Humidity value={props.info.humidity} />
                             </div>

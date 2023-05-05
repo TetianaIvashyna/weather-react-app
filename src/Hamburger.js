@@ -4,10 +4,11 @@ import axios from "axios";
 
 export default function Hamburger(props) {
     let [inputtext, setInputtext] = useState("");
+    let [isCelsius, setIsCelsius] = useState(true);
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
     function handleResponse(response) {
-        console.log(response.data);
+        console.log(response.data.wind);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -67,15 +68,15 @@ export default function Hamburger(props) {
                                     </span>
                                     <ul className="dropdown-menu">
                                         <li>
-                                            <div class="form-check ms-3">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
-                                                <label class="form-check-label" for="flexRadioDefault1">
+                                            <div className="form-check ms-3">
+                                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={() => setIsCelsius(true)} defaultChecked />
+                                                <label className="form-check-label" for="flexRadioDefault1">
                                                     Celsius
                                                 </label>
                                             </div>
-                                            <div class="form-check  ms-3">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                                                <label class="form-check-label" for="flexRadioDefault2">
+                                            <div className="form-check  ms-3">
+                                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => setIsCelsius(false)} />
+                                                <label className="form-check-label" for="flexRadioDefault2">
                                                     Fahrenheit
                                                 </label>
                                             </div>
@@ -94,7 +95,7 @@ export default function Hamburger(props) {
                         </div>
                     </div>
                 </nav>
-                <Weather info={weather} />
+                <Weather info={weather} isCelsius={isCelsius} />
             </div>
         );
     }
