@@ -8,7 +8,6 @@ export default function Hamburger(props) {
     let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
 
     function handleResponse(response) {
-        console.log(response.data.wind);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -24,6 +23,11 @@ export default function Hamburger(props) {
            });
     }
 
+    function currentLocation() {
+        setWeather({city: "", ready: false});
+        console.log(weather);
+
+    }
 
     function handleInput(event) {
         setInputtext(event.target.value);
@@ -32,6 +36,14 @@ export default function Hamburger(props) {
     function Search(event) {
         event.preventDefault();
         setWeather({city: inputtext, ready: false});
+    }
+
+    function handlePosition(position) {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
+        let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
     }
 
     if (weather.ready) {
@@ -91,6 +103,7 @@ export default function Hamburger(props) {
                             <form className="d-flex" role="search" onSubmit={Search}>
                                 <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput}/>
                                 <button className="btn btn-outline-success" type="submit">Search</button>
+                                <button className="btn btn-outline-success" onClick={currentLocation}>Nearby</button>
                             </form>
                         </div>
                     </div>
@@ -101,8 +114,16 @@ export default function Hamburger(props) {
     }
     else {
         const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
+        if (weather.city === "") {
+            navigator.geolocation.getCurrentPosition(handlePosition);
+        }
+        else {
+        
         let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);
+        
+        }
+    
         return (
         <div className="Hamburger">
                 <nav className="navbar navbar-expand-lg bg-light">
@@ -134,6 +155,7 @@ export default function Hamburger(props) {
                             <form className="d-flex" role="search" onSubmit={Search}>
                                 <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput}/>
                                 <button className="btn btn-outline-success" type="submit">Search</button>
+                                <button className="btn btn-outline-success" onClick={currentLocation}>Nearby</button>
                             </form>
                         </div>
                     </div>

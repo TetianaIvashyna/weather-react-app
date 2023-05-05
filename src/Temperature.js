@@ -15,7 +15,7 @@ export default function Temperature(props) {
     [props.isCelsius]);
     
     return (
-    <span className="Temperature text-center">
+    <span className="Temperature">
       {temperature}&deg;
       </span>
       );
