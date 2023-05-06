@@ -1,0 +1,39 @@
+import React, { useState } from "react";
+import axios from "axios";
+
+import DayForecast from "./DayForecast";
+
+export default function Forecast(props) {
+  let [forecast, setForecast] = useState({ready: false});
+  const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
+
+  function handleResponse(response) {
+    setForecast({
+      data: response.data.daily,
+      ready: true
+    })
+  }
+
+  if (forecast.ready) {
+    return (
+      <div className="Forecast">
+        <div className="container">
+          <div className="row">
+            {forecast.data.map(function (item, index){
+              return(
+                <div className="col" key={index}>
+                  <DayForecast weekday={item.time} description={item.condition.description} iconUrl={item.condition.icon_url} lowtemp={item.temperature.minimum} hightemp={item.temperature.maximum} isCelsius={props.isCelsius} />
+                </div>
+              );
+            })}
+            
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+    return <p>Loading forecast...</p>
+  }
+}

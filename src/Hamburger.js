@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Weather from "./Weather";
+import Forecast from "./Forecast";
 import axios from "axios";
 
 export default function Hamburger() {
@@ -125,7 +126,7 @@ export default function Hamburger() {
                 { weather.ready ? 
                     <div>
                         <Weather info={weather} isCelsius={isCelsius} /> 
-                        <Weather info={weather} isCelsius={isCelsius} /> 
+                        <Forecast city={weather.city} isCelsius={isCelsius} /> 
                     </div>
                 : <p>Loading...</p>}
             </div>
