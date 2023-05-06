@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Weather from "./Weather";
 import Forecast from "./Forecast";
 import axios from "axios";
+import { ColorRing } from "react-loader-spinner";
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
@@ -58,9 +59,8 @@ export default function Hamburger() {
             navigator.geolocation.getCurrentPosition(handlePosition);
         }
         else {
-        
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
+            let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
+            axios.get(apiUrl).then(handleResponse);
         }
     }
         return(
@@ -127,7 +127,16 @@ export default function Hamburger() {
                         <Weather info={weather} isCelsius={isCelsius} /> 
                         <Forecast city={weather.city} isCelsius={isCelsius} /> 
                     </div>
-                : <p>Loading...</p>}
+                : <div className="text-center"><ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="blocks-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="blocks-wrapper"
+                    colors={['#655E9D', '#F2BB1A', '#4C9BCD', '#514A83', '#CFCFCF']}
+                    /></div>
+                    }
             </div>
         );
     

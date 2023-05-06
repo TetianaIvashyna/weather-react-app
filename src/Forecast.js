@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { ColorRing } from "react-loader-spinner";
 import DayForecast from "./DayForecast";
 
 export default function Forecast(props) {
@@ -34,6 +34,14 @@ export default function Forecast(props) {
   } else {
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
-    return <p>Loading forecast...</p>
+    return <div className="text-center"><ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="blocks-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="blocks-wrapper"
+                    colors={['#655E9D', '#F2BB1A', '#4C9BCD', '#514A83', '#CFCFCF']}
+                    /></div>
   }
 }
