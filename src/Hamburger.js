@@ -43,7 +43,6 @@ export default function Hamburger() {
     }
 
     function weatherInMyCity(event) {
-        console.log(event.target.id);
         setWeather({city: event.target.id, ready: false});
     }
 
