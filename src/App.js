@@ -6,8 +6,11 @@ import "./Styles.css"
 function App() {
   return (
     <div className="App">
-      <Hamburger />
-      <Footer />
+      <div className="app-container container text-center">
+        <Hamburger />
+        <Footer />
+      </div>
+      
     </div>
   );
 }

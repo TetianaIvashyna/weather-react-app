@@ -40,7 +40,11 @@ export default function Hamburger() {
 
     function Search(event) {
         event.preventDefault();
+        if (inputtext.length===0) {
+            alert("Please, enter a city");
+        } else {
         setWeather({city: inputtext, ready: false});
+        }
     }
 
     function weatherInMyCity(event) {
@@ -55,7 +59,7 @@ export default function Hamburger() {
     }
 
     if (!weather.ready) {
-        if (weather.city === "") {
+        if (weather.city.length === 0) {
             navigator.geolocation.getCurrentPosition(handlePosition);
         }
         else {
@@ -65,7 +69,7 @@ export default function Hamburger() {
     }
         return(
             <div className="Hamburger">
-                <nav className="navbar navbar-expand-lg bg-light">
+                <nav className="navbar navbar-expand-md bg-light">
                     <div className="container-fluid">
                         <h3>{weather.city}</h3>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
