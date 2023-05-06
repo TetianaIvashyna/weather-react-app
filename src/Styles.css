@@ -3,6 +3,12 @@
     --bd-lightblue-rgb: #2883bc;
     --bd-lightblue: #4C9BCD;
  }
+
+ body {
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
+ }
  
  h2 {
     font-size: 96px;
