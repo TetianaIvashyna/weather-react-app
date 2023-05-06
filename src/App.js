@@ -6,7 +6,7 @@ import "./Styles.css"
 function App() {
   return (
     <div className="App">
-      <Hamburger defaultcity="Eindhoven" />
+      <Hamburger />
       <Footer />
     </div>
   );

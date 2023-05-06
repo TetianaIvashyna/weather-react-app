@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Weather from "./Weather";
 import axios from "axios";
 
-export default function Hamburger(props) {
+export default function Hamburger() {
+    const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
+    const myCities = ["Kharkiv", "Pfunds", "Kyiv", "Amsterdam", "Berlin"];
+
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
-    let [ weather, setWeather] = useState({ city: props.defaultcity, ready: false });
+    let [ weather, setWeather] = useState({ city: "", ready: false });
 
     function handleResponse(response) {
        setWeather ({
@@ -23,9 +26,9 @@ export default function Hamburger(props) {
            });
     }
 
-    function currentLocation() {
+    function currentLocation(event) {
+        event.preventDefault();
         setWeather({city: "", ready: false});
-        console.log(weather);
 
     }
 
@@ -38,15 +41,28 @@ export default function Hamburger(props) {
         setWeather({city: inputtext, ready: false});
     }
 
+    function weatherInMyCity(event) {
+        console.log(event.target.id);
+        setWeather({city: event.target.id, ready: false});
+    }
+
     function handlePosition(position) {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
-        const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-        let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+        let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);
     }
 
-    if (weather.ready) {
+    if (!weather.ready) {
+        if (weather.city === "") {
+            navigator.geolocation.getCurrentPosition(handlePosition);
+        }
+        else {
+        
+        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
+        }
+    }
         return(
             <div className="Hamburger">
                 <nav className="navbar navbar-expand-lg bg-light">
@@ -60,18 +76,16 @@ export default function Hamburger(props) {
                                 <li className="nav-item">
                                       
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="/">Current Location</a>
-                                </li>
                                 <li className="nav-item dropdown">
                                     <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                                     My Cities
                                     </span>
                                     <ul className="dropdown-menu">
-                                        <li><span className="dropdown-item">Kharkiv</span></li>
-                                        <li><span className="dropdown-item">Kyiv</span></li> 
-                                        <li><span className="dropdown-item">Eindhoven</span></li>
-                                        <li><span className="dropdown-item">Amsterdam</span></li>
+                                        {myCities.map(function (city, index){
+                                            return(
+                                                <li><span className="dropdown-item" id={city} key={index} onClick={weatherInMyCity}>{city}</span></li>
+                                            );
+                                        })}
                                     </ul>
                                 </li>
                                 <li className="nav-item dropdown">
@@ -103,65 +117,18 @@ export default function Hamburger(props) {
                             <form className="d-flex" role="search" onSubmit={Search}>
                                 <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput}/>
                                 <button className="btn btn-outline-success" type="submit">Search</button>
-                                <button className="btn btn-outline-success" onClick={currentLocation}>Nearby</button>
+                                <button className="btn btn-success ms-2" onClick={currentLocation}>Nearby</button>
                             </form>
                         </div>
                     </div>
                 </nav>
-                <Weather info={weather} isCelsius={isCelsius} />
+                { weather.ready ? 
+                    <div>
+                        <Weather info={weather} isCelsius={isCelsius} /> 
+                        <Weather info={weather} isCelsius={isCelsius} /> 
+                    </div>
+                : <p>Loading...</p>}
             </div>
         );
-    }
-    else {
-        const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-        if (weather.city === "") {
-            navigator.geolocation.getCurrentPosition(handlePosition);
-        }
-        else {
-        
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
-        
-        }
     
-        return (
-        <div className="Hamburger">
-                <nav className="navbar navbar-expand-lg bg-light">
-                    <div className="container-fluid">
-                        <h3>{weather.city}</h3>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="/">Current Location</a>
-                                </li>
-                                <li className="nav-item dropdown">
-                                    <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                                    My Cities
-                                    </span>
-                                    <ul className="dropdown-menu">
-                                        <li><span className="dropdown-item">Kharkiv</span></li>
-                                        <li><span className="dropdown-item">Kyiv</span></li> 
-                                        <li><span className="dropdown-item">Eindhoven</span></li>
-                                        <li><span className="dropdown-item">Amsterdam</span></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                
-                                </li>
-                            </ul>
-                            <form className="d-flex" role="search" onSubmit={Search}>
-                                <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput}/>
-                                <button className="btn btn-outline-success" type="submit">Search</button>
-                                <button className="btn btn-outline-success" onClick={currentLocation}>Nearby</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
-                Loading...
-            </div>
-        );
-    }
 }
