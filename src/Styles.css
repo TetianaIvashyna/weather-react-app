@@ -1,6 +1,37 @@
+ :root {
+    --bd-lightblue-bg: #4C9BCD;
+    --bd-lightblue-rgb: #2883bc;
+    --bd-lightblue: #4C9BCD;
+ }
+ 
  h2 {
     font-size: 96px;
 }
+
+.btn-success {
+    background-color: var(--bd-lightblue-bg);
+    --bs-btn-bg: var(--bd-lightblue-bg);
+    --bs-btn-border-color: var(--bd-lightblue-bg);
+    --bs-btn-hover-border-color: #{shade-color($bd-lightblue, 10%)};
+}
+
+.btn-success:hover,
+.btn-success:active {
+    background-color: var(--bd-lightblue-rgb);
+}
+
+.btn-outline-success {
+    --bs-btn-color: var(--bd-lightblue-bg);
+    --bs-btn-border-color: var(--bd-lightblue-bg);
+    --bs-btn-hover-border-color: #{shade-color($bd-lightblue, 10%)};
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:active {
+    background-color: var(--bd-lightblue-rgb);
+    
+}
+
  .Temperature p {
     font-size: 24px;
  }
