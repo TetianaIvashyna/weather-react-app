@@ -12,7 +12,7 @@ export default function Temperature(props) {
         }
     }
     switchUnit(props.value, props.isCelsius);}, 
-    [props.isCelsius]);
+    [props.isCelsius, props.value]);
     
     return (
     <span className="Temperature">
