@@ -44,6 +44,10 @@ strong {
 }
 
 .main-weather-picture {
+    font-size: 18px;
+}
+
+.main-weather-picture {
     display: inline;
 }
 

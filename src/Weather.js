@@ -22,6 +22,7 @@ export default function Weather(props) {
                                 <Temperature value={props.info.temperature} isCelsius={props.isCelsius} />
                                 <img src={props.info.iconUrl} alt={props.info.description} className="main-weather-picture"/>
                             </div>
+                            
                             <span className="FeelsLike">Feels Like <Temperature value={props.info.feelslike} isCelsius={props.isCelsius} /></span>
                             <div className="SmallWind d-block d-sm-none mt-2">Wind: {Math.round(props.info.windspeed)} m/s </div>
                         </div>
