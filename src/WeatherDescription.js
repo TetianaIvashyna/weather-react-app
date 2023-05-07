@@ -2,6 +2,6 @@ import React from "react";
 
 export default function WeatherDescription(props) {
   return (
-      <p className="text-capitalize">{props.value}</p>
+      <strong className="WeatherDesc text-capitalize">{props.value}</strong>
   );
 }

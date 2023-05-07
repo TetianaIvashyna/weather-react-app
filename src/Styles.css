@@ -4,19 +4,51 @@
     --bd-lightblue: #4C9BCD;
  }
 
- body {
-    font-family: 'Comfortaa', cursive;
-    font-family: 'Playfair Display', serif;
-    font-family: 'Poppins', sans-serif;
+ body {     
+    font-family: 'Mukta', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    opacity: 0.9;
  }
+
+ 
+ .SmallWind {
+    opacity: 0.8;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+ .FeelsLike {
+    opacity: 0.8;
+    font-weight: 500;
+    font-size: 22px;
+ }
+
+.extras {
+    line-height: 0.7;
+}
+
+.main-info {
+    line-height: 1;
+}
+
+strong {
+    opacity: 0.8;
+}
  
 .main-weather-info {
+    font-family: 'Mukta', sans-serif;
+    font-weight: 600;
     font-size: 64px;
+    opacity: 0.9;
+}
+
+.main-weather-picture {
     display: inline;
 }
 
 .app-container {
-    max-width: 960px;
+    max-width: 1080px;
 }
 
 .btn-success {
@@ -45,12 +77,12 @@
     
 }
 
- .Temperature p {
+.WeatherDesc {
     font-size: 24px;
- }
+}
 
-h1 {
-    font-size: 128px;
+.LocationTime {
+    font-size: 26px;
 }
 
 .ImportantExtras p {

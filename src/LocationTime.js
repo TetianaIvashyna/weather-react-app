@@ -18,10 +18,11 @@ export default function LocationTime(props) {
     }
 
   return (
-    <div className="LocationTime p-2 ms-2 d-none d-sm-flex">
-      <p>
+    <span className="LocationTime">
+      <strong className="d-none d-sm-block">
         {day} {dateday} {month} {hours}:{minutes}
-      </p>
-    </div>
+      </strong>
+      <strong className="d-block d-sm-none">Now</strong>
+    </span>
   );
 }
