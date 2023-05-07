@@ -84,7 +84,7 @@ export default function Hamburger() {
                                     <ul className="dropdown-menu">
                                         {myCities.map(function (city, index){
                                             return(
-                                                <li><span className="dropdown-item" id={city} key={index} onClick={weatherInMyCity}>{city}</span></li>
+                                                <li><span className="dropdown-item text-end" id={city} key={index} onClick={weatherInMyCity}>{city}</span></li>
                                             );
                                         })}
                                     </ul>
@@ -101,7 +101,7 @@ export default function Hamburger() {
                                                     Celsius
                                                 </label>
                                             </div>
-                                            <div className="form-check  ms-3">
+                                            <div className="form-check ms-3">
                                                 <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => setIsCelsius(false)} />
                                                 <label className="form-check-label" for="flexRadioDefault2">
                                                     Fahrenheit
