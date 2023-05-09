@@ -51,6 +51,20 @@ export default function Hamburger() {
         setWeather({city: event.target.id, ready: false});
     }
 
+    function handleError(GeolocationPositionError) {
+        let mainMessage = `Can not get the weather in your current location.`;
+        switch(GeolocationPositionError.code) {
+            case 'PERMISSION_DENIED': alert(`${mainMessage} Unable to get your position. Please, check your Permassion Settings.`);
+                break;
+            case 'TIMEOUT': alert(`${mainMessage} Can not define your position. Time of waiting response is out.`);
+                break;
+            case 'POSITION_UNAVAILABLE': alert(`${mainMessage} Can not define your position.`);
+                break;
+            default: alert(`${mainMessage}`);
+        }
+        setWeather({city: "Eindhoven", ready: false});
+    }
+
     function handlePosition(position) {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
@@ -60,7 +74,7 @@ export default function Hamburger() {
 
     if (!weather.ready) {
         if (weather.city.length === 0) {
-            navigator.geolocation.getCurrentPosition(handlePosition);
+            navigator.geolocation.getCurrentPosition(handlePosition, handleError, { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000});
         }
         else {
             let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
