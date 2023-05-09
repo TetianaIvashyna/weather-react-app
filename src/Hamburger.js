@@ -56,7 +56,7 @@ export default function Hamburger() {
         let mainMessage = `Can not get the weather in your current location.`;
         console.log(GeolocationPositionError);
         switch(GeolocationPositionError.code) {
-            case 1: alert(`${mainMessage} Unable to get your position. Please, check your Permassion Settings.`);
+            case 1: alert(`${mainMessage} Unable to get your position. Please, check your Permission Settings.`);
                 break;
             case 3: alert(`${mainMessage} Can not define your position. Time of waiting response is out.`);
                 break;
