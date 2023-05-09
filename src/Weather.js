@@ -6,6 +6,7 @@ import WeatherDescription from "./WeatherDescription";
 import Humidity from "./Humidity";
 import Pressure from "./Pressure";
 import WindDirection from "./WindDirection";
+import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
 
 export default function Weather(props) { 
     
@@ -20,7 +21,7 @@ export default function Weather(props) {
                             
                             <div className="main-weather-info">
                                 <Temperature value={props.info.temperature} isCelsius={props.isCelsius} />
-                                <img src={props.info.iconUrl} alt={props.info.description} className="main-weather-picture"/>
+                                <WeatherAnimatedPicture icon={props.info.icon} size={64} />
                             </div>
                             
                             <span className="FeelsLike">Feels Like <Temperature value={props.info.feelslike} isCelsius={props.isCelsius} /></span>
@@ -49,3 +50,6 @@ export default function Weather(props) {
             </div>
         );
 }
+
+//  <img src={props.info.iconUrl} alt={props.info.description} className="main-weather-picture"/>
+// 

@@ -22,7 +22,7 @@ export default function Forecast(props) {
             {forecast.data.map(function (item, index){
               return(
                 <div className="col" key={index}>
-                  <DayForecast weekday={item.time} description={item.condition.description} iconUrl={item.condition.icon_url} lowtemp={item.temperature.minimum} hightemp={item.temperature.maximum} isCelsius={props.isCelsius} />
+                  <DayForecast weekday={item.time} description={item.condition.description} icon={item.condition.icon} lowtemp={item.temperature.minimum} hightemp={item.temperature.maximum} isCelsius={props.isCelsius} />
                 </div>
               );
             })}

@@ -16,6 +16,7 @@ export default function Hamburger() {
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
+               icon: response.data.condition.icon,
                iconUrl: response.data.condition.icon_url,
                datetime: new Date(response.data.time * 1000),
                feelslike: response.data.temperature.feels_like,
@@ -53,12 +54,13 @@ export default function Hamburger() {
 
     function handleError(GeolocationPositionError) {
         let mainMessage = `Can not get the weather in your current location.`;
+        console.log(GeolocationPositionError);
         switch(GeolocationPositionError.code) {
-            case 'PERMISSION_DENIED': alert(`${mainMessage} Unable to get your position. Please, check your Permassion Settings.`);
+            case 1: alert(`${mainMessage} Unable to get your position. Please, check your Permassion Settings.`);
                 break;
-            case 'TIMEOUT': alert(`${mainMessage} Can not define your position. Time of waiting response is out.`);
+            case 3: alert(`${mainMessage} Can not define your position. Time of waiting response is out.`);
                 break;
-            case 'POSITION_UNAVAILABLE': alert(`${mainMessage} Can not define your position.`);
+            case 2: alert(`${mainMessage} Please, check your internet connection.`);
                 break;
             default: alert(`${mainMessage}`);
         }
