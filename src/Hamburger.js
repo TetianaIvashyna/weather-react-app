@@ -6,7 +6,7 @@ import { ColorRing } from "react-loader-spinner";
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-    const myCities = ["Alkmaar", "Eindhoven", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
+    const myCities = ["Alkmaar", "Eindhoven", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
 
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
