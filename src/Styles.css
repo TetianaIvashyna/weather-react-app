@@ -43,20 +43,18 @@ strong {
     opacity: 0.9;
 }
 
-.main-weather-picture {
-    font-size: 24px;
-}
-
-.main-weather-picture {
-    display: inline;
-}
-
 .app-container {
     max-width: 1080px;
 }
 
 .DayForecast {
     min-width: 110px;
+    max-width: 110px;
+}
+
+.main-temp-icon {
+    min-width: 120px;
+    max-width: 120px;
 }
 
 .btn-success {
@@ -103,25 +101,9 @@ strong {
     font-size: 18px;
 }
 
-.CurrentWeather {
-    margin-bottom: 15px;
-}
-
-.WeatherApp {
-    margin-bottom: 20px;
-}
-
 @media(min-width: 756px) {
 .DayForecast {
     font-size: 24px;
-}
-
-.CurrentWeather {
-    margin-bottom: 50px;
-}
-
-.WeatherApp {
-    margin-bottom: 80px;
 }
 
 }

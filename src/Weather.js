@@ -19,9 +19,17 @@ export default function Weather(props) {
                         <div className="main-info container text-start">
                             <LocationTime date={props.info.datetime}/>
                             
-                            <div className="main-weather-info">
-                                <Temperature value={props.info.temperature} isCelsius={props.isCelsius} />
-                                <WeatherAnimatedPicture icon={props.info.icon} size={64} />
+                            <div className="main-weather-info container">
+                                <div className="row">
+                                    <div className="col-3 pt-2 main-temp-icon">
+                                        <Temperature value={props.info.temperature} isCelsius={props.isCelsius} />
+                                    </div>
+                                    <div className="col-3 pt-2 main-temp-icon">
+                                        <WeatherAnimatedPicture icon={props.info.icon} size={64} />
+                                    </div>
+                                    <div className="col-6"></div>
+                
+                                </div>
                             </div>
                             
                             <span className="FeelsLike">Feels Like <Temperature value={props.info.feelslike} isCelsius={props.isCelsius} /></span>
