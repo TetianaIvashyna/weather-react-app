@@ -6,7 +6,7 @@ import { ColorRing } from "react-loader-spinner";
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-    const myCities = ["Alkmaar", "Eindhoven", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
+    const myCities = ["Alkmaar", "Eindhoven", "Egmond aan Zee", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
 
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
@@ -44,6 +44,7 @@ export default function Hamburger() {
         if (inputtext.length===0) {
             alert("Please, enter a city");
         } else {
+        // clear the input field!
         setWeather({city: inputtext, ready: false});
         }
     }
@@ -71,7 +72,30 @@ export default function Hamburger() {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
+        axios.get(apiUrl).then(handleResponse).catch(function (error) {
+            if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+            } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+            }
+            console.log(error.config);
+            console.log(error.code);
+            console.log(error.message);
+            console.log(error.toJSON());
+            if (error.code === "ERR_NETWORK") {
+                alert("Can not load the weather data. Please, check your internet connection");
+            }
+        });
     }
 
     if (!weather.ready) {
@@ -80,7 +104,30 @@ export default function Hamburger() {
         }
         else {
             let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-            axios.get(apiUrl).then(handleResponse);
+            axios.get(apiUrl).then(handleResponse).catch(function (error) {
+                if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+                } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+                }
+                console.log(error.config);
+                console.log(error.code);
+                console.log(error.message);
+                console.log(error.toJSON());
+                if (error.code === "ERR_NETWORK") {
+                    alert("Can not load the weather data. Please, check your internet connection");
+                }
+            });
         }
     }
         return(
@@ -132,7 +179,7 @@ export default function Hamburger() {
                                 </li>
                             </ul>
                             <form className="d-flex" role="search" onSubmit={Search}>
-                                <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput}/>
+                                <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput} />
                                 <button className="btn btn-outline-success" type="submit">Search</button>
                                 <button className="btn btn-success ms-2" onClick={currentLocation}>Nearby</button>
                             </form>
