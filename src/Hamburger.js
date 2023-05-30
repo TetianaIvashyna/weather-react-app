@@ -3,6 +3,9 @@ import Weather from "./Weather";
 import Forecast from "./Forecast";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
+import $ from 'jquery';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
@@ -10,9 +13,11 @@ export default function Hamburger() {
 
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
-    let [ weather, setWeather] = useState({ city: "", ready: false });
+    let [weather, setWeather] = useState({ city: "", ready: false });
+    let inputForm = $('#cityInput');
 
     function handleResponse(response) {
+        console.log(response);
        setWeather ({
                city: response.data.city,
                description: response.data.condition.description,
@@ -27,6 +32,7 @@ export default function Hamburger() {
                humidity: response.data.temperature.humidity,
                ready: true
            });
+           inputForm.val('');
     }
 
     function currentLocation(event) {
@@ -57,13 +63,13 @@ export default function Hamburger() {
         let mainMessage = `Can not get the weather in your current location.`;
         console.log(GeolocationPositionError);
         switch(GeolocationPositionError.code) {
-            case 1: alert(`${mainMessage} Unable to get your position. Please, check your Permission Settings.`);
+            case 1: toast.error(`${mainMessage} Unable to get your position. Please, check your Permission Settings.`);
                 break;
-            case 3: alert(`${mainMessage} Can not define your position. Time of waiting response is out.`);
+            case 3: toast.error(`${mainMessage} Can not define your position. Time of waiting response is out.`);
                 break;
-            case 2: alert(`${mainMessage} Please, check your internet connection.`);
+            case 2: toast.error(`${mainMessage} Please, check your internet connection.`);
                 break;
-            default: alert(`${mainMessage}`);
+            default: toast.error(`${mainMessage}`);
         }
         setWeather({city: "Eindhoven", ready: false});
     }
@@ -79,21 +85,24 @@ export default function Hamburger() {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+            toast.error('Error fetching data. Please try again later.');
             } else if (error.request) {
             // The request was made but no response was received
             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
             // http.ClientRequest in node.js
             console.log(error.request);
+            toast.error('Error fetching data. Please try again later.');
             } else {
             // Something happened in setting up the request that triggered an Error
             console.log('Error', error.message);
+            
             }
             console.log(error.config);
             console.log(error.code);
             console.log(error.message);
             console.log(error.toJSON());
             if (error.code === "ERR_NETWORK") {
-                alert("Can not load the weather data. Please, check your internet connection");
+               toast.error('Can not load the weather data. Please, check your internet connection');
             }
         });
     }
@@ -111,11 +120,13 @@ export default function Hamburger() {
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
+                toast.error('Error fetching data. Please try again later.');
                 } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
                 console.log(error.request);
+                toast.error('Error fetching data. Please try again later.');
                 } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
@@ -125,7 +136,7 @@ export default function Hamburger() {
                 console.log(error.message);
                 console.log(error.toJSON());
                 if (error.code === "ERR_NETWORK") {
-                    alert("Can not load the weather data. Please, check your internet connection");
+                    toast.error('Can not load the weather data. Please, check your internet connection');
                 }
             });
         }
@@ -179,7 +190,7 @@ export default function Hamburger() {
                                 </li>
                             </ul>
                             <form className="d-flex" role="search" onSubmit={Search}>
-                                <input className="form-control me-2" type="search" placeholder="City" aria-label="Search" onChange={handleInput} />
+                                <input className="form-control me-2" id="cityInput" type="search" placeholder="City" aria-label="Search" onChange={handleInput} />
                                 <button className="btn btn-outline-success" type="submit">Search</button>
                                 <button className="btn btn-success ms-2" onClick={currentLocation}>Nearby</button>
                             </form>
@@ -201,7 +212,10 @@ export default function Hamburger() {
                     colors={['#655E9D', '#F2BB1A', '#4C9BCD', '#514A83', '#CFCFCF']}
                     /></div>
                     }
+            <ToastContainer />
             </div>
+            
+        
         );
     
 }
