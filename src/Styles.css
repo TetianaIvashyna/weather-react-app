@@ -106,3 +106,7 @@ strong {
 .dropdown-item {
     cursor: pointer;
 }
+
+.DayForecast .TemperatureForecast {
+    white-space: nowrap;
+}
