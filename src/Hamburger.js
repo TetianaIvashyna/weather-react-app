@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Weather from "./Weather";
 import Forecast from "./Forecast";
+import handleAxiosError from "./HandleAxiosError";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 import $ from 'jquery';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
     const myCities = ["Alkmaar", "Eindhoven", "Egmond aan Zee", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
-
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
     let [weather, setWeather] = useState({ city: "", ready: false });
@@ -50,7 +50,6 @@ export default function Hamburger() {
         if (inputtext.length===0) {
             alert("Please, enter a city");
         } else {
-        // clear the input field!
         setWeather({city: inputtext, ready: false});
         }
     }
@@ -78,33 +77,7 @@ export default function Hamburger() {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse).catch(function (error) {
-            if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            toast.error('Error fetching data. Please try again later.');
-            } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log(error.request);
-            toast.error('Error fetching data. Please try again later.');
-            } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-            
-            }
-            console.log(error.config);
-            console.log(error.code);
-            console.log(error.message);
-            console.log(error.toJSON());
-            if (error.code === "ERR_NETWORK") {
-               toast.error('Can not load the weather data. Please, check your internet connection');
-            }
-        });
+        axios.get(apiUrl).then(handleResponse).catch(handleAxiosError);
     }
 
     if (!weather.ready) {
@@ -113,32 +86,7 @@ export default function Hamburger() {
         }
         else {
             let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
-            axios.get(apiUrl).then(handleResponse).catch(function (error) {
-                if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-                toast.error('Error fetching data. Please try again later.');
-                } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
-                console.log(error.request);
-                toast.error('Error fetching data. Please try again later.');
-                } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-                }
-                console.log(error.config);
-                console.log(error.code);
-                console.log(error.message);
-                console.log(error.toJSON());
-                if (error.code === "ERR_NETWORK") {
-                    toast.error('Can not load the weather data. Please, check your internet connection');
-                }
-            });
+            axios.get(apiUrl).then(handleResponse).catch(handleAxiosError);
         }
     }
         return(
@@ -213,9 +161,6 @@ export default function Hamburger() {
                     /></div>
                     }
             <ToastContainer />
-            </div>
-            
-        
+            </div>       
         );
-    
 }

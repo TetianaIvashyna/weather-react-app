@@ -47,11 +47,6 @@ strong {
     max-width: 1080px;
 }
 
-.DayForecast {
-    min-width: 125px;
-    max-width: 125px;
-}
-
 .main-temp-icon {
     min-width: 120px;
     max-width: 120px;

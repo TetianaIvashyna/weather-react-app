@@ -5,7 +5,7 @@ import ReactAnimatedWeather from "react-animated-weather";
 export default function WeatherAnimatedPicture(props) {
     const iconsMapping = {
         'clear-sky-day': {icon: 'CLEAR_DAY',
-  color: '#F2BB1A'},
+  color: '#F78640'},
         'clear-sky-night': {icon: 'CLEAR_NIGHT',
   color: '#514A83'},
         'few-clouds-day': {icon: 'PARTLY_CLOUDY_DAY',

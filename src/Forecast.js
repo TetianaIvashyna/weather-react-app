@@ -18,7 +18,7 @@ export default function Forecast(props) {
     return (
       <div className="Forecast m-4">
         <div className="container">
-          <div className="row">
+          <div className="row flex-wrap">
             {forecast.data.map(function (item, index){
               return(
                 <div className="col" key={index}>

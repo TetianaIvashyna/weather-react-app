@@ -11,6 +11,7 @@ function App() {
         <Hamburger />
 
         <Footer />
+        
       </div>
       
     </div>
@@ -18,3 +19,5 @@ function App() {
 }
 // container d-flex justify-content-center p-3
 export default App;
+
+// <AllIcons size={36}/>

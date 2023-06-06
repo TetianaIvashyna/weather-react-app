@@ -5,7 +5,7 @@ import ReactAnimatedWeather from "react-animated-weather";
 export default function AllIcons(props) {
     const iconsArray = [
         {desc: 'clear-sky-day',icon: 'CLEAR_DAY',
-  color: '#F2BB1A'},
+  color: '#F78640'},
         {desc: 'clear-sky-night',icon: 'CLEAR_NIGHT',
   color: '#514A83'},
         {desc: 'few-clouds-day',icon: 'PARTLY_CLOUDY_DAY',
@@ -60,3 +60,7 @@ export default function AllIcons(props) {
     </div>
   </div>);
 }
+
+// {desc: 'few-clouds-day',icon: 'PARTLY_CLOUDY_DAY', color: '#F78640'},
+// {desc: 'clear-sky-day',icon: 'CLEAR_DAY', color: '#F2BB1A'},
+// 'goldenrod'
