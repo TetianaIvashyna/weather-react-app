@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Weather from "./Weather";
 import Forecast from "./Forecast";
-import handleAxiosError from "./HandleAxiosError";
+// import handleAxiosError from "./HandleAxiosError";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 import $ from 'jquery';
@@ -13,13 +13,14 @@ export default function Hamburger() {
     const myCities = ["Alkmaar", "Eindhoven", "Egmond aan Zee", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
-    let [weather, setWeather] = useState({ city: "", ready: false });
+    let [weather, setWeather] = useState({ city: "", message:"", ready: false });
     let inputForm = $('#cityInput');
 
     function handleResponse(response) {
         console.log(response);
        setWeather ({
-               city: response.data.city,
+               city: response.data.city,   
+               message: response.data.message,      
                description: response.data.condition.description,
                icon: response.data.condition.icon,
                iconUrl: response.data.condition.icon_url,
@@ -37,7 +38,7 @@ export default function Hamburger() {
 
     function currentLocation(event) {
         event.preventDefault();
-        setWeather({city: "", ready: false});
+        setWeather({city: "", message:"", ready: false});
 
     }
 
@@ -48,14 +49,15 @@ export default function Hamburger() {
     function Search(event) {
         event.preventDefault();
         if (inputtext.length===0) {
-            alert("Please, enter a city");
+            toast.error("Please, enter a city");
+            setWeather({city: "", message: "Choose Location", ready: false});
         } else {
-        setWeather({city: inputtext, ready: false});
+        setWeather({city: inputtext, message:"", ready: false});
         }
     }
 
     function weatherInMyCity(event) {
-        setWeather({city: event.target.id, ready: false});
+        setWeather({city: event.target.id, message:"", ready: false});
     }
 
     function handleError(GeolocationPositionError) {
@@ -70,8 +72,36 @@ export default function Hamburger() {
                 break;
             default: toast.error(`${mainMessage}`);
         }
-        setWeather({city: "Eindhoven", ready: false});
+        setWeather({city: "", message: "Choose Location", ready: false});
     }
+
+    function handleAxiosError(error) {
+            if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            toast.error('Error fetching data. Please try again later.');
+            } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+            toast.error('Error fetching data. Please try again later.');
+            } 
+            console.log(error.config);
+            console.log(error.code);
+            console.log(error.message);
+            if (error.message==="Cannot read properties of undefined (reading 'description')") {
+                toast.error('Can not find this city. Please, check the spelling');
+            }
+            setWeather({city: "", message: "Choose Location", ready: false});
+            console.log(error.toJSON());
+            if (error.code === "ERR_NETWORK") {
+               toast.error('Can not load the weather data. Please, check your internet connection');
+            }
+        }
 
     function handlePosition(position) {
         let lat = position.coords.latitude;
@@ -81,10 +111,10 @@ export default function Hamburger() {
     }
 
     if (!weather.ready) {
-        if (weather.city.length === 0) {
+        if (weather.city.length === 0 & weather.message.length === 0) {
             navigator.geolocation.getCurrentPosition(handlePosition, handleError, { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000});
         }
-        else {
+        else if (weather.city.length > 0) {
             let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
             axios.get(apiUrl).then(handleResponse).catch(handleAxiosError);
         }
@@ -93,7 +123,7 @@ export default function Hamburger() {
             <div className="Hamburger">
                 <nav className="navbar navbar-expand-md bg-light">
                     <div className="container-fluid">
-                        <h3>{weather.city}</h3>
+                        <h3>{ (weather.message === "Choose Location") ? "Please, choose a location" : weather.city }</h3>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -150,7 +180,8 @@ export default function Hamburger() {
                         <Weather info={weather} isCelsius={isCelsius} /> 
                         <Forecast city={weather.city} isCelsius={isCelsius} /> 
                     </div>
-                : <div className="text-center"><ColorRing
+                :  weather.message.length === 0 ? 
+                <div className="text-center"><ColorRing
                     visible={true}
                     height="80"
                     width="80"
@@ -159,7 +190,7 @@ export default function Hamburger() {
                     wrapperClass="blocks-wrapper"
                     colors={['#655E9D', '#F2BB1A', '#4C9BCD', '#514A83', '#CFCFCF']}
                     /></div>
-                    }
+                    : ""}
             <ToastContainer />
             </div>       
         );
