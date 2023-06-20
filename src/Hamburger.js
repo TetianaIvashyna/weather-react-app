@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
-    const myCities = ["Alkmaar", "Eindhoven", "Egmond aan Zee", "Delft", "Nijmegen", "Utrecht", "Amsterdam", "Rotterdam", "Leiden", "Groningen", "Marken", "Den Bosch", "Maastricht", "Arnhem"];
+    const myCities = [ "Eindhoven", "Amsterdam", "Rotterdam", "Den Haag"];
     let [inputtext, setInputtext] = useState("");
     let [isCelsius, setIsCelsius] = useState(true);
     let [weather, setWeather] = useState({ city: "", message:"", ready: false });
