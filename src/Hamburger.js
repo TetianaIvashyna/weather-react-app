@@ -20,7 +20,7 @@ export default function Hamburger() {
         console.log(response);
        setWeather ({
                city: response.data.city,   
-               message: response.data.message,      
+               message: response.data.city,      
                description: response.data.condition.description,
                icon: response.data.condition.icon,
                iconUrl: response.data.condition.icon_url,
@@ -34,6 +34,7 @@ export default function Hamburger() {
                ready: true
            });
            inputForm.val('');
+           setInputtext("");
     }
 
     function currentLocation(event) {
@@ -50,10 +51,11 @@ export default function Hamburger() {
         event.preventDefault();
         if (inputtext.length===0) {
             toast.error("Please, enter a city");
-            setWeather({city: "", message: "Choose Location", ready: false});
+            setWeather({city: "", message: "Please, choose a location", ready: false});
         } else {
         setWeather({city: inputtext, message:"", ready: false});
         }
+        
     }
 
     function weatherInMyCity(event) {
@@ -72,7 +74,7 @@ export default function Hamburger() {
                 break;
             default: toast.error(`${mainMessage}`);
         }
-        setWeather({city: "", message: "Choose Location", ready: false});
+        setWeather({city: "", message: "Please, choose a location", ready: false});
     }
 
     function handleAxiosError(error) {
@@ -96,7 +98,7 @@ export default function Hamburger() {
             if (error.message==="Cannot read properties of undefined (reading 'description')") {
                 toast.error('Can not find this city. Please, check the spelling');
             }
-            setWeather({city: "", message: "Choose Location", ready: false});
+            setWeather({city: "", message: "Please, choose a location", ready: false});
             console.log(error.toJSON());
             if (error.code === "ERR_NETWORK") {
                toast.error('Can not load the weather data. Please, check your internet connection');
@@ -123,7 +125,7 @@ export default function Hamburger() {
             <div className="Hamburger">
                 <nav className="navbar navbar-expand-md bg-light">
                     <div className="container-fluid">
-                        <h3>{ (weather.message === "Choose Location") ? "Please, choose a location" : weather.city }</h3>
+                        <h3>{weather.message}</h3>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
