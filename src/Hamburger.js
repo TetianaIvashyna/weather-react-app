@@ -18,8 +18,12 @@ export default function Hamburger() {
     let inputForm = $('#cityInput');
 
     function handleResponse(response) {
-        console.log(response);
-       setWeather ({
+        if (response.data.message === "City not found") {
+            toast.error('Can not find this city. Please, check the spelling');
+            setWeather({city: "", message: "Please, choose a location", ready: false});
+        }
+        else {
+            setWeather ({
                city: response.data.city,   
                message: response.data.city,      
                description: response.data.condition.description,
@@ -37,6 +41,7 @@ export default function Hamburger() {
            inputForm.val('');
            setInputtext("");
         }
+    }
 
     function Search(event) {
         event.preventDefault();

@@ -18,6 +18,7 @@ export default function HandleAxiosError(error) {
    console.log(error.config);
    console.log(error.code);
    console.log(error.message);
+   console.log(error.status);
    if (error.message==="Cannot read properties of undefined (reading 'description')") {
        toast.error('Can not find this city. Please, check the spelling');
    }
