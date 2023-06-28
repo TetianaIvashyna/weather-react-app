@@ -72,6 +72,7 @@ export default function Hamburger() {
                 });
         }
     }
+    
         return(
             <div className="Hamburger">
                 <nav className="navbar navbar-expand-md bg-light">
