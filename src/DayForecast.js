@@ -8,7 +8,7 @@ export default function DayForecast(props) {
   let date = new Date(props.weekday * 1000);
   let day = days[date.getDay()];
   return (
-    <div className="DayForecast text-center border rounded-4 p-1 m-1">
+    <div className="DayForecast text-center p-1 m-1">
       <div className="WeekDayForecast">{day}</div>
       <h3 className="IconForecast">
          <WeatherAnimatedPicture icon={props.icon} size={40} />
@@ -22,3 +22,4 @@ export default function DayForecast(props) {
 }
 
 // <WeatherPicture src={props.iconUrl} alt={props.description} />
+// <div className="DayForecast text-center border rounded-4 p-1 m-1">
