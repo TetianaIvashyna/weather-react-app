@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import $ from 'jquery';
 import Weather from "./Weather";
 import Forecast from "./Forecast";
 import handleAxiosError from "./HandleAxiosError";
-import axios from "axios";
 import handlePositionError from "./HandlePositionError";
-import { ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./Loader";
-import $ from 'jquery';
 
 export default function Hamburger() {
     const apiKey= "57bfff0eb99c4410o19bd76a18tf36ea";
@@ -18,6 +18,7 @@ export default function Hamburger() {
     let inputForm = $('#cityInput');
 
     function handleResponse(response) {
+        console.log(response);
         if (response.data.message === "City not found") {
             toast.error('Can not find this city. Please, check the spelling');
             setWeather({city: "", message: "Please, choose a location", ready: false});
