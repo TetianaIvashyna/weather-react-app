@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import $ from 'jquery';
 import Weather from "./Weather";
 import Forecast from "./Forecast";
 import handleAxiosError from "./HandleAxiosError";
@@ -15,7 +14,6 @@ export default function Hamburger() {
     let [isCelsius, setIsCelsius] = useState(true);
     let [weather, setWeather] = useState({ city: "", message:"", ready: false });
     let [inputtext, setInputtext] = useState("");
-    let inputForm = $('#cityInput');
 
     function handleResponse(response) {
         console.log(response);
@@ -39,7 +37,6 @@ export default function Hamburger() {
                humidity: response.data.temperature.humidity,
                ready: true
            });
-           inputForm.val('');
            setInputtext("");
         }
     }
@@ -60,18 +57,19 @@ export default function Hamburger() {
         axios.get(apiUrl).then(handleResponse).catch(handleAxiosError);
     }
 
-    if (!weather.ready) {
+    useEffect(() => {
         if (weather.city.length === 0 & weather.message.length === 0) {
-            navigator.geolocation.getCurrentPosition(handlePosition, error => {setWeather({city: "", message: "Please, choose a location", ready: false}); handlePositionError(error); } , { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000});
+                navigator.geolocation.getCurrentPosition(handlePosition, error => {setWeather({city: "", message: "Please, choose a location", ready: false}); handlePositionError(error); } , { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000});
         }
-        else if (weather.city.length > 0) {
+        if (weather.city.length > 0) {
             let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${weather.city}&key=${apiKey}&units=metric`;
             axios.get(apiUrl).then(handleResponse).catch(error => {
                 setWeather({city: "", message: "Please, choose a location", ready: false});
                 handleAxiosError(error);
                 });
         }
-    }
+    },
+    [weather.ready]);
     
         return(
             <div className="Hamburger">
@@ -118,7 +116,7 @@ export default function Hamburger() {
                                 </li>
                             </ul>
                             <form className="d-flex" role="search" onSubmit={Search}>
-                                <input className="form-control me-2" id="cityInput" type="search" placeholder="City" aria-label="Search" onChange={event => setInputtext(event.target.value)} />
+                                <input className="form-control me-2" id="cityInput" type="search" placeholder="City" aria-label="Search" onChange={event => setInputtext(event.target.value)} value={inputtext} />
                                 <button className="btn btn-outline-success" type="submit">Search</button>
                                 <button className="btn btn-success ms-2" onClick={e => { e.preventDefault(); setWeather({city: "", message:"", ready: false});}}>Nearby</button>
                             </form>
