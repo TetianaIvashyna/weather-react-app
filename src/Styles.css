@@ -12,13 +12,13 @@
  }
 
  
- .SmallWind {
+.SmallWind {
     opacity: 0.8;
     font-weight: 500;
     font-size: 16px;
 }
 
- .FeelsLike {
+.FeelsLike {
     opacity: 0.8;
     font-weight: 500;
     font-size: 22px;
@@ -74,8 +74,7 @@ strong {
 }
 
 .btn-outline-success:hover {
-    background-color: var(--bd-lightblue-rgb);
-    
+    background-color: var(--bd-lightblue-rgb);   
 }
 
 .WeatherDesc {
@@ -90,17 +89,14 @@ strong {
     font-size: 24px;
 }
 
-
-
 .DayForecast {
     font-size: 18px;
 }
 
 @media(min-width: 756px) {
-.DayForecast {
-    font-size: 24px;
-}
-
+    .DayForecast {
+        font-size: 24px;
+    }
 }
 
 .dropdown-item {

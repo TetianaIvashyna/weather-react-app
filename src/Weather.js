@@ -3,10 +3,12 @@ import React from "react";
 import LocationTime from "./LocationTime";
 import Temperature from "./Temperature";
 import WeatherDescription from "./WeatherDescription";
-import Humidity from "./Humidity";
-import Pressure from "./Pressure";
+// import Humidity from "./Humidity";
+// import Pressure from "./Pressure";
 import WindDirection from "./WindDirection";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
+import WeatherParameter from "./WeatherParameter";
+import windDirection from "./WindDirection";
 
 export default function Weather(props) { 
     
@@ -45,9 +47,9 @@ export default function Weather(props) {
                                 <WeatherDescription value={props.info.description} />
                             </div>      
                             <div className="extras mt-4 ">
-                                <Pressure value={props.info.pressure}/>
-                                <Humidity value={props.info.humidity} />
-                                <strong>Wind:</strong> {Math.round(props.info.windspeed)} m/s 
+                                <WeatherParameter name="Pressure" value={props.info.pressure} unit="hPa" comment="" />
+                                <WeatherParameter name="Humidity" value={props.info.humidity} unit="%" comment="" />
+                                <WeatherParameter name="Wind" value={Math.round(props.info.windspeed)} unit="m/s" comment={windDirection(props.info.winddirection)} />
                                 <WindDirection value={props.info.winddirection} />
                                 
                             </div>
