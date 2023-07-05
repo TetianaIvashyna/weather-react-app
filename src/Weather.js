@@ -5,7 +5,7 @@ import Temperature from "./Temperature";
 import WeatherDescription from "./WeatherDescription";
 // import Humidity from "./Humidity";
 // import Pressure from "./Pressure";
-import WindDirection from "./WindDirection";
+// import WindDirection from "./WindDirection";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
 import WeatherParameter from "./WeatherParameter";
 import windDirection from "./WindDirection";
@@ -49,9 +49,7 @@ export default function Weather(props) {
                             <div className="extras mt-4 ">
                                 <WeatherParameter name="Pressure" value={props.info.pressure} unit="hPa" comment="" />
                                 <WeatherParameter name="Humidity" value={props.info.humidity} unit="%" comment="" />
-                                <WeatherParameter name="Wind" value={Math.round(props.info.windspeed)} unit="m/s" comment={windDirection(props.info.winddirection)} />
-                                <WindDirection value={props.info.winddirection} />
-                                
+                                <WeatherParameter name="Wind" value={Math.round(props.info.windspeed)} unit="m/s" comment={windDirection(props.info.winddirection)} />   
                             </div>
                         </div>
                     </div>
