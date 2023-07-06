@@ -3,9 +3,6 @@ import React from "react";
 import LocationTime from "./LocationTime";
 import Temperature from "./Temperature";
 import WeatherDescription from "./WeatherDescription";
-// import Humidity from "./Humidity";
-// import Pressure from "./Pressure";
-// import WindDirection from "./WindDirection";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
 import WeatherParameter from "./WeatherParameter";
 import windDirection from "./WindDirection";
@@ -37,11 +34,9 @@ export default function Weather(props) {
                             <span className="FeelsLike">Feels Like <Temperature value={props.info.feelslike} isCelsius={props.isCelsius} /></span>
                             <div className="SmallWind d-block d-sm-none mt-2">Wind: {Math.round(props.info.windspeed)} m/s </div>
                         </div>
-                    </div>
-                    
+                    </div>    
     
                     <div className="col-sm  ">
-    
                         <div className="WeatherExtras text-end d-none d-sm-block">
                             <div className="ImportantExtras">
                                 <WeatherDescription value={props.info.description} />

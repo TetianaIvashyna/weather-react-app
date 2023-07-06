@@ -11,8 +11,7 @@ export default function DayForecast(props) {
     <div className="DayForecast text-center p-1 m-1">
       <div className="WeekDayForecast">{day}</div>
       <h3 className="IconForecast">
-         <WeatherAnimatedPicture icon={props.icon} size={40} />
-        
+         <WeatherAnimatedPicture icon={props.icon} size={40} /> 
       </h3>
       <div className="TemperatureForecast">
         <strong><Temperature value={props.hightemp} isCelsius={props.isCelsius} /></strong> / <Temperature value={props.lowtemp} isCelsius={props.isCelsius} />
