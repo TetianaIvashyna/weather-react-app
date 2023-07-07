@@ -1,15 +1,14 @@
 import React from "react";
 import Temperature from "./Temperature";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
+import makeDate from "./makeDate";
 // import WeatherPicture from "./WeatherPicture";
 
 export default function DayForecast(props) {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let date = new Date(props.weekday * 1000);
-  let day = days[date.getDay()];
+  let date = makeDate(props.weekday);
   return (
     <div className="DayForecast text-center p-1 m-1">
-      <div className="WeekDayForecast">{day}</div>
+      <div className="WeekDayForecast">{date.day}</div>
       <h3 className="IconForecast">
          <WeatherAnimatedPicture icon={props.icon} size={40} /> 
       </h3>

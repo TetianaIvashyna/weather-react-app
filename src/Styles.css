@@ -103,6 +103,6 @@ strong {
     cursor: pointer;
 }
 
-.DayForecast .TemperatureForecast {
+.DayForecast .TemperatureForecast, .Temperature {
     white-space: nowrap;
 }

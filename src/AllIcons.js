@@ -1,7 +1,6 @@
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 import { iconsArray } from "./constants";
-// ['#514A83', '#F2BB1A', '#4C9BCD', '#514A83', '#CFCFCF'
 
 export default function AllIcons(props) {
   return(

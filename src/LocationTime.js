@@ -1,12 +1,10 @@
 import React from "react";
 import { days, months } from "./constants";
 
-
-
 export default function LocationTime(props) {
     let day = days[props.date.getDay()];
-let dateday = props.date.getDate();
-let month = months[props.date.getMonth()];
+    let dateday = props.date.getDate();
+    let month = months[props.date.getMonth()];
 
     let hours = props.date.getHours();
     if (hours < 10) {
