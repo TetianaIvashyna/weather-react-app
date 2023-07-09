@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { apiKey, myCities } from "./constants";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Weather from "./Weather";
 import Forecast from "./Forecast";
-import handleAxiosError from "./HandleAxiosError";
-import handlePositionError from "./HandlePositionError";
+import handleAxiosError from "./handleAxiosError";
+import handlePositionError from "./handlePositionError";
 import Loader from "./Loader";
+import makeDate from "./makeDate";
 
 export default function Hamburger() {
-  const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
-  const myCities = ["Eindhoven", "Kharkiv", "Amsterdam", "Kyiv"];
   let [isCelsius, setIsCelsius] = useState(true);
   let [weather, setWeather] = useState({ city: "", message: "", ready: false });
   let [inputtext, setInputtext] = useState("");
 
-  function handleResponse(response) {
-    console.log(response);
+  
+
+  function Search(event) {
+    event.preventDefault();
+    if (inputtext.length === 0) {
+      toast.error("Please, enter a city");
+    } else {
+      setWeather({ city: inputtext, message: "", ready: false });
+    }
+  }
+
+  useEffect(() => {
+    function handleResponse(response) {
     if (response.data.message === "City not found") {
       toast.error("Can not find this city. Please, check the spelling");
       setWeather({
@@ -31,7 +42,7 @@ export default function Hamburger() {
         description: response.data.condition.description,
         icon: response.data.condition.icon,
         iconUrl: response.data.condition.icon_url,
-        datetime: new Date(response.data.time * 1000),
+        dateTime: makeDate(response.data.time),
         feelslike: response.data.temperature.feels_like,
         pressure: response.data.temperature.pressure,
         temperature: response.data.temperature.current,
@@ -44,22 +55,13 @@ export default function Hamburger() {
     }
   }
 
-  function Search(event) {
-    event.preventDefault();
-    if (inputtext.length === 0) {
-      toast.error("Please, enter a city");
-    } else {
-      setWeather({ city: inputtext, message: "", ready: false });
-    }
-  }
-
-  useEffect(() => {
     function handlePosition(position) {
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
       let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
       axios.get(apiUrl).then(handleResponse).catch(handleAxiosError);
     }
+
     if ((weather.city.length === 0) & (weather.message.length === 0)) {
       navigator.geolocation.getCurrentPosition(
         handlePosition,
@@ -88,7 +90,7 @@ export default function Hamburger() {
           handleAxiosError(error);
         });
     }
-  }, [weather.ready, weather.city, weather.message]);
+  }, [weather.ready, weather.message, weather.city]);
 
   return (
     <div className="Hamburger">

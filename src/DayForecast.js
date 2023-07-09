@@ -2,7 +2,6 @@ import React from "react";
 import Temperature from "./Temperature";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
 import makeDate from "./makeDate";
-// import WeatherPicture from "./WeatherPicture";
 
 export default function DayForecast(props) {
   let date = makeDate(props.weekday);
@@ -19,5 +18,4 @@ export default function DayForecast(props) {
   );
 }
 
-// <WeatherPicture src={props.iconUrl} alt={props.description} />
 // <div className="DayForecast text-center border rounded-4 p-1 m-1">

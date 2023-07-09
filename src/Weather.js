@@ -1,6 +1,4 @@
 import React from "react"; 
-
-import LocationTime from "./LocationTime";
 import Temperature from "./Temperature";
 import WeatherDescription from "./WeatherDescription";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
@@ -8,7 +6,6 @@ import WeatherParameter from "./WeatherParameter";
 import windDirection from "./WindDirection";
 
 export default function Weather(props) { 
-    
    return (
             <div className="Weather m-4">
                 
@@ -16,7 +13,9 @@ export default function Weather(props) {
                     <div className="row">
                     <div className="col-sm">
                         <div className="main-info container text-start">
-                            <LocationTime date={props.info.datetime}/>
+                            <strong className="d-none d-sm-block">
+                                {props.info.dateTime.day} {props.info.dateTime.date} {props.info.dateTime.month} {props.info.dateTime.hours}:{props.info.dateTime.minutes}
+                            </strong>
                             
                             <div className="main-weather-info container">
                                 <div className="row">

@@ -1,3 +1,5 @@
+export const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
+export const myCities = ["Eindhoven", "Kharkiv", "Amsterdam", "Kyiv"];
 export const iconsArray = [
         {desc: 'clear-sky-day',icon: 'CLEAR_DAY',
   color: '#F78640'},
