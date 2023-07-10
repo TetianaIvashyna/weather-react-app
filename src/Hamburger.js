@@ -15,8 +15,6 @@ export default function Hamburger() {
   let [weather, setWeather] = useState({ city: "", message: "", ready: false });
   let [inputtext, setInputtext] = useState("");
 
-  
-
   function Search(event) {
     event.preventDefault();
     if (inputtext.length === 0) {

@@ -6,8 +6,8 @@ import makeDate from "./makeDate";
 export default function DayForecast(props) {
   let date = makeDate(props.weekday);
   return (
-    <div className="DayForecast text-center p-1 m-1">
-      <div className="WeekDayForecast">{date.day}</div>
+    <div className="DayForecast text-center p-1 m-1 mb-3">
+      <div className="WeekDayForecast pb-3">{date.day}</div>
       <h3 className="IconForecast">
          <WeatherAnimatedPicture icon={props.icon} size={40} /> 
       </h3>

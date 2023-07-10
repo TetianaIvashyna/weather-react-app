@@ -1,9 +1,8 @@
 import React from "react"; 
 import Temperature from "./Temperature";
-import WeatherDescription from "./WeatherDescription";
 import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
 import WeatherParameter from "./WeatherParameter";
-import windDirection from "./WindDirection";
+import windDirection from "./windDirection";
 
 export default function Weather(props) { 
    return (
@@ -35,10 +34,10 @@ export default function Weather(props) {
                         </div>
                     </div>    
     
-                    <div className="col-sm  ">
+                    <div className="col-sm">
                         <div className="WeatherExtras text-end d-none d-sm-block">
                             <div className="ImportantExtras">
-                                <WeatherDescription value={props.info.description} />
+                                <strong className="WeatherDesc text-capitalize">{props.info.description}</strong>
                             </div>      
                             <div className="extras mt-4 ">
                                 <WeatherParameter name="Pressure" value={props.info.pressure} unit="hPa" comment="" />
@@ -50,8 +49,6 @@ export default function Weather(props) {
                     </div>
                 </div>
             </div>
-        );
+    );
 }
 
-//  <img src={props.info.iconUrl} alt={props.info.description} className="main-weather-picture"/>
-// 
