@@ -1,6 +1,6 @@
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
-import { iconsArray } from "./constants";
+import { iconsArray } from "../../Hamburger/utilities/constants/constants";
 
 export default function AllIcons(props) {
   return(

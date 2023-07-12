@@ -1,4 +1,4 @@
-import { days, months } from "./constants";
+import { days, months } from "../../../utilities/constants/constants";
 
 export default function makeDate(dateValue) {
     let date = new Date(dateValue * 1000);

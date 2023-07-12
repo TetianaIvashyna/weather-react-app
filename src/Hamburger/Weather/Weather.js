@@ -1,8 +1,8 @@
 import React from "react"; 
-import Temperature from "./Temperature";
-import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
-import WeatherParameter from "./WeatherParameter";
-import windDirection from "./windDirection";
+import Temperature from "../commons/Temperature/Temperature";
+import WeatherAnimatedPicture from "../commons/WeatherAnimatedPicture/WeatherAnimatedPicture";
+import WeatherParameter from "./WeatherParameter/WeatherParameter";
+import windDirection from "./utilities/windDirection/windDirection";
 
 export default function Weather(props) { 
    return (

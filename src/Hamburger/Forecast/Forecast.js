@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { apiKey } from "./constants";
+import { apiKey } from "../utilities/constants/constants";
 import axios from "axios";
-import DayForecast from "./DayForecast";
-import Loader from "./Loader";
+import DayForecast from "./DayForecast/DayForecast";
+import Loader from "../commons/Loader/Loader";
 
 export default function Forecast(props) {
   let [forecast, setForecast] = useState({ ready: false });

@@ -1,7 +1,7 @@
 import React from "react";
-import Temperature from "./Temperature";
-import WeatherAnimatedPicture from "./WeatherAnimatedPicture";
-import makeDate from "./makeDate";
+import Temperature from "../../commons/Temperature/Temperature";
+import WeatherAnimatedPicture from "../../commons/WeatherAnimatedPicture/WeatherAnimatedPicture";
+import makeDate from "../../commons/utilities/makeDate/makeDate";
 
 export default function DayForecast(props) {
   let date = makeDate(props.weekday);

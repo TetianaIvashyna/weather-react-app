@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { apiKey, myCities } from "./constants";
+import { apiKey, myCities } from "./utilities/constants/constants";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Weather from "./Weather";
-import Forecast from "./Forecast";
-import handleAxiosError from "./handleAxiosError";
-import handlePositionError from "./handlePositionError";
-import Loader from "./Loader";
-import makeDate from "./makeDate";
+import Weather from "./Weather/Weather";
+import Forecast from "./Forecast/Forecast";
+import handleAxiosError from "./utilities/handleAxiosError/handleAxiosError";
+import handlePositionError from "./utilities/handlePositionError/handlePositionError";
+import Loader from "./commons/Loader/Loader";
+import makeDate from "./commons/utilities/makeDate/makeDate";
 
 export default function Hamburger() {
   let [isCelsius, setIsCelsius] = useState(true);
