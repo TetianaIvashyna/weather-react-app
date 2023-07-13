@@ -1,5 +1,5 @@
 export const apiKey = "57bfff0eb99c4410o19bd76a18tf36ea";
-export const myCities = ["Eindhoven", "Kharkiv", "Amsterdam", "Kyiv"];
+export const myCitiesArray = ["Eindhoven", "Kharkiv", "Amsterdam", "Kyiv"];
 export const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const months = ["January", "February", "March", "April", "May", "June", "Julay", "August", "September", "October", "November", "December"];
 

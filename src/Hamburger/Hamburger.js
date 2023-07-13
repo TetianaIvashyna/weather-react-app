@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { apiKey, myCities } from "./commons/utilities/constants/constants";
+import { apiKey } from "./commons/utilities/constants/constants";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MyCities from "./MyCities/MyCities";
 import Weather from "./Weather/Weather";
 import Forecast from "./Forecast/Forecast";
 import handleAxiosError from "./utilities/handleAxiosError/handleAxiosError";
@@ -109,37 +110,7 @@ export default function Hamburger() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0 text-end">
               <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
-                >
-                  My Cities
-                </span>
-                <ul className="dropdown-menu">
-                  {myCities.map(function (city, index) {
-                    return (
-                      <li>
-                        <span
-                          className="dropdown-item text-end"
-                          id={city}
-                          key={index}
-                          onClick={(event) => {
-                            setWeather({
-                              city: event.target.id,
-                              message: "",
-                              ready: false,
-                            });
-                            console.log(event.target.id);
-                          }}
-                        >
-                          {city}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <MyCities passingState={setWeather}/>
               </li>
               <li className="nav-item dropdown">
                 <span
