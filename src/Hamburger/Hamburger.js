@@ -4,26 +4,20 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyCities from "./MyCities/MyCities";
+import TemperatureUnits from "./TemperatureUnits/TemperatureUnits";
 import Weather from "./Weather/Weather";
 import Forecast from "./Forecast/Forecast";
 import handleAxiosError from "./utilities/handleAxiosError/handleAxiosError";
 import handlePositionError from "./utilities/handlePositionError/handlePositionError";
 import Loader from "./commons/Loader/Loader";
 import makeDate from "./commons/utilities/makeDate/makeDate";
+import NavbarToggler from "./NavbarToggler/NavbarToggler";
+import SearchCityForm from "./SearchCityForm/SearchCityForm";
 
 export default function Hamburger() {
   let [isCelsius, setIsCelsius] = useState(true);
   let [weather, setWeather] = useState({ city: "", message: "", ready: false });
   let [inputtext, setInputtext] = useState("");
-
-  function Search(event) {
-    event.preventDefault();
-    if (inputtext.length === 0) {
-      toast.error("Please, enter a city");
-    } else {
-      setWeather({ city: inputtext, message: "", ready: false });
-    }
-  }
 
   useEffect(() => {
     function handleResponse(response) {
@@ -96,91 +90,17 @@ export default function Hamburger() {
       <nav className="navbar navbar-expand-md bg-light">
         <div className="container-fluid">
           <h3>{weather.message}</h3>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <NavbarToggler />
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0 text-end">
               <li className="nav-item dropdown">
-                <MyCities passingState={setWeather}/>
+                <MyCities passingState={setWeather } />
               </li>
               <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
-                >
-                  Temperature units
-                </span>
-                <ul className="dropdown-menu">
-                  <li>
-                    <div className="form-check ms-3">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        onClick={() => setIsCelsius(true)}
-                        defaultChecked
-                      />
-                      <label
-                        className="form-check-label"
-                        for="flexRadioDefault1"
-                      >
-                        Celsius
-                      </label>
-                    </div>
-                    <div className="form-check ms-3">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        onClick={() => setIsCelsius(false)}
-                      />
-                      <label
-                        className="form-check-label"
-                        for="flexRadioDefault2"
-                      >
-                        Fahrenheit
-                      </label>
-                    </div>
-                  </li>
-                </ul>
+                <TemperatureUnits setIsCelsius={setIsCelsius} />
               </li>
             </ul>
-            <form className="d-flex" role="search" onSubmit={Search}>
-              <input
-                className="form-control me-2"
-                id="cityInput"
-                type="search"
-                placeholder="City"
-                aria-label="Search"
-                onChange={(event) => setInputtext(event.target.value)}
-                value={inputtext}
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-              <button
-                className="btn btn-success ms-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setWeather({ city: "", message: "", ready: false });
-                }}
-              >
-                Nearby
-              </button>
-            </form>
+            <SearchCityForm setInputtext={setInputtext} setWeather={setWeather} inputtext={inputtext} />
           </div>
         </div>
       </nav>
