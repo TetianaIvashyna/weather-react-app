@@ -21,7 +21,7 @@ export default function MyCities(props) {
                           id={city}
                           key={index}
                           onClick={(event) => {
-                            props.passingState({
+                            props.setWeather({
                               city: event.target.id,
                               message: "",
                               ready: false,

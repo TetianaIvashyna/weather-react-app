@@ -5,10 +5,10 @@ export default function SearchCityForm(props) {
 
     function Search(event) {
     event.preventDefault();
-        if (props.inputtext.length === 0) {
+        if (props.inputText.length === 0) {
             toast.error("Please, enter a city");
         } else {
-            props.setWeather({ city: props.inputtext, message: "", ready: false });
+            props.setWeather({ city: props.inputText, message: "", ready: false });
         }
     }
     return(
@@ -19,8 +19,8 @@ export default function SearchCityForm(props) {
                 type="search"
                 placeholder="City"
                 aria-label="Search"
-                onChange={(event) => props.setInputtext(event.target.value)}
-                value={props.inputtext}
+                onChange={(event) => props.setInputText(event.target.value)}
+                value={props.inputText}
               />
               <button className="btn btn-outline-success" type="submit">
                 Search

@@ -7,15 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { apiKey } from "./commons/utilities/constants/constants";
 
-import MyCities from "./MyCities/MyCities";
-import TemperatureUnits from "./TemperatureUnits/TemperatureUnits";
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 import Weather from "./Weather/Weather";
 import Forecast from "./Forecast/Forecast";
 import handleAxiosError from "./utilities/handleAxiosError/handleAxiosError";
 import handlePositionError from "./utilities/handlePositionError/handlePositionError";
 import Loader from "./commons/Loader/Loader";
-import NavbarToggler from "./NavbarToggler/NavbarToggler";
-import SearchCityForm from "./SearchCityForm/SearchCityForm";
 
 import makeDate from "./commons/utilities/makeDate/makeDate";
 // import getWeatherData from "./utilities/getWeatherData/getWeatherData";
@@ -95,29 +92,14 @@ function handlePosition(position) {
     }, [weather.ready, weather.message, weather.city]);  
 
 
-  return (
-    <div className="Hamburger">
-      <nav className="navbar navbar-expand-md bg-light">
-        <div className="container-fluid">
-          <h3>{weather.message}</h3>
-          <NavbarToggler />
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto ms-3 mb-2 mb-lg-0 text-end">
-              <li className="nav-item dropdown">
-                <MyCities setWeather={setWeather } />
-              </li>
-              <li className="nav-item dropdown">
-                <TemperatureUnits setIsCelsius={setIsCelsius} />
-              </li>
-            </ul>
-            <SearchCityForm 
-              setInputText={setInputText} 
-              setWeather={setWeather} 
-              inputText={inputText} 
-            />
-          </div>
-        </div>
-      </nav>
+    return(
+        <HamburgerMenu 
+            message={weather.message} 
+            setWeather={setWeather} 
+            setIsCelsius={setIsCelsius} 
+            inputText={inputText}
+            setInputText={setInputText}
+        />
       {weather.ready ? (
         <div>
           <Weather 
