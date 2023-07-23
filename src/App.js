@@ -1,14 +1,14 @@
 import React from "react";
-import Hamburger from "./Hamburger/Hamburger";
 import Footer from "./Footer/Footer";
 import "./Styles/Styles.css"
+import WeatherAppCore from "./WeatherAppCore/WeatherAppCore";
 // import AllIcons from "./AllIcons";
 
 function App() {
   return (
     <div className="App">
       <div className="app-container container text-center">
-        <Hamburger />
+        <WeatherAppCore />
         <Footer />
       </div>  
     </div>

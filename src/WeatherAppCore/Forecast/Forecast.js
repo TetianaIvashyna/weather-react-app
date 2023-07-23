@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { apiKey } from "../commons/utilities/constants/constants";
+import { apiKey } from "../commons/constants/constants";
 import axios from "axios";
 import DayForecast from "./DayForecast/DayForecast";
 import Loader from "../commons/Loader/Loader";

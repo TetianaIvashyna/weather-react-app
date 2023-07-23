@@ -1,5 +1,5 @@
 import React from "react";
-import { myCitiesArray } from "../commons/utilities/constants/constants";
+import { myCitiesArray } from "../../commons/constants/constants";
 
 export default function MyCities(props) {
     return(
